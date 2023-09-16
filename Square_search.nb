@@ -1,0 +1,450 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16964,        442]
+NotebookOptionsPosition[     16161,        420]
+NotebookOutlinePosition[     16564,        436]
+CellTagsIndexPosition[     16521,        433]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "This", " ", "is", " ", "function", " ", "to", " ", "check", " ", 
+     "whether", " ", "srting", " ", "\"\<name\>\"", " ", "starts", " ", 
+     "with", " ", "index"}], "-", 
+    RowBox[{
+    "th", " ", "characters", " ", "of", " ", "words", " ", "from", " ", 
+     "square"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"complyQ", "[", 
+      RowBox[{"name_", ",", " ", "square_", ",", " ", "index_"}], "]"}], ":=", 
+     RowBox[{"StringStartsQ", "[", 
+      RowBox[{"name", ",", " ", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Characters", "[", "#", "]"}], "[", 
+            RowBox[{"[", "index", "]"}], "]"}], ")"}], "&"}], "/@", 
+         "square"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "This", " ", "is", " ", "recursively", " ", "called", " ", "function", 
+      " ", "to", " ", "search", " ", "for", " ", "magic", " ", "square"}], 
+     ",", " ", 
+     RowBox[{
+      RowBox[{"like", " ", "sator"}], "-", 
+      RowBox[{"arepo", " ", "square"}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getArepo", "[", 
+      RowBox[{"square_", ",", " ", "list_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"possiblesList", ",", " ", "index"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"index", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"Length", "[", "square", "]"}], "+", "1"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "square", "]"}], "==", "5"}], ",", " ", 
+          "square", ",", " ", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"possiblesList", " ", "=", " ", 
+            RowBox[{"Select", "[", 
+             RowBox[{"list", ",", " ", 
+              RowBox[{
+               RowBox[{"complyQ", "[", 
+                RowBox[{"#", ",", " ", "square", ",", " ", "index"}], "]"}], 
+               "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "[", "possiblesList", "]"}], "==", "0"}], ",",
+              "0", ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"getArepo", "[", 
+                RowBox[{
+                 RowBox[{"Append", "[", 
+                  RowBox[{"square", ",", " ", "#"}], "]"}], ",", " ", 
+                 "list"}], "]"}], "&"}], "/@", "possiblesList"}]}], 
+            "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "This", " ", "is", " ", "function", " ", "for", " ", "findig", " ", 
+      "sator"}], "-", 
+     RowBox[{"arepo", " ", 
+      RowBox[{"squares", ".", " ", "It"}], " ", "takes", " ", "dictionary", 
+      " ", "as", " ", "input"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getSator", "[", "x_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "sator", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"sator", " ", "=", " ", 
+         RowBox[{"Parallelize", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"getArepo", "[", 
+             RowBox[{
+              RowBox[{"{", "#", "}"}], ",", " ", "x"}], "]"}], "&"}], "/@", 
+           RowBox[{"x", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"Ceiling", "[", 
+               RowBox[{"2", "*", 
+                RowBox[{
+                 RowBox[{"Length", "[", "x", "]"}], "/", "3"}]}], "]"}], ";;", 
+              RowBox[{"-", "1"}]}], "]"}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sator", " ", "=", " ", 
+         RowBox[{"Select", "[", 
+          RowBox[{"sator", ",", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"(", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{"#", ",", " ", "0", ",", " ", "Infinity"}], "]"}], 
+              ")"}]}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"sator", " ", "=", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{"sator", ",", " ", "_Integer"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sator", " ", "=", " ", 
+         RowBox[{"Union", "[", "sator", "]"}]}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"WordList", "[", 
+        RowBox[{"\"\<KnownWords\>\"", ",", " ", 
+         RowBox[{"Language", "\[Rule]", "\"\<English\>\""}]}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"StringLength", "[", "#", "]"}], "==", "5"}], ")"}], 
+        "&"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"ToLowerCase", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      "array"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{"DeleteDuplicates", "[", "array", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Number of words to search among: \>\"", ",", " ", 
+      RowBox[{"Length", "[", "array", "]"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"getSator", "[", "array", "]"}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.903280390499687*^9, 3.903280394484353*^9}, {
+  3.9033481086621623`*^9, 3.9033481088221216`*^9}, {3.903366382625531*^9, 
+  3.903366382702209*^9}, {3.903845938430894*^9, 3.90384626493852*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"cf0e2ab7-514b-44d8-bec5-82def660fb8b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of words to search among: \"\>", "\[InvisibleSpace]", 
+   "5520"}],
+  SequenceForm["Number of words to search among: ", 5520],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9038466725515423`*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"c91c6ad9-2bc0-451f-ba5c-40c4b3e25a27"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.903846679407752*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"cfcd3116-cbb8-4db3-b313-7a5e3afd594b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "This", " ", "is", " ", "function", " ", "to", " ", "check", " ", 
+     "whether", " ", "srting", " ", "\"\<name\>\"", " ", "starts", " ", 
+     "with", " ", "index"}], "-", 
+    RowBox[{
+    "th", " ", "characters", " ", "of", " ", "words", " ", "from", " ", 
+     "square"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"complyQ", "[", 
+      RowBox[{"name_", ",", " ", "square_", ",", " ", "index_"}], "]"}], ":=", 
+     RowBox[{"StringStartsQ", "[", 
+      RowBox[{"name", ",", " ", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Characters", "[", "#", "]"}], "[", 
+            RowBox[{"[", "index", "]"}], "]"}], ")"}], "&"}], "/@", 
+         "square"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "This", " ", "is", " ", "function", " ", "to", " ", "find", " ", "magic",
+       " ", "squares"}], ",", " ", 
+     RowBox[{
+      RowBox[{
+      "whose", " ", "vertical", " ", "and", " ", "horisontal", " ", "lines", 
+       " ", "are", " ", "words"}], ";", " ", 
+      RowBox[{"called", " ", "recursively"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getRecurse", "[", 
+      RowBox[{"horisontal_", ",", " ", "vertical_", ",", " ", "list_"}], 
+      "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"index", ",", " ", "possiblesList"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "vertical", "]"}], "==", 
+          RowBox[{"StringLength", "[", 
+           RowBox[{"horisontal", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{"return", " ", "value"}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"horisontal", ",", " ", "vertical"}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "horisontal", "]"}], ">", 
+            RowBox[{"Length", "[", "vertical", "]"}]}], ",", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"(", "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{"Filling", " ", "vertical"}], "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"index", " ", "=", " ", 
+              RowBox[{"Length", "[", "horisontal", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"possiblesList", " ", "=", " ", 
+              RowBox[{"Select", "[", 
+               RowBox[{"list", ",", " ", 
+                RowBox[{
+                 RowBox[{"complyQ", "[", 
+                  RowBox[{"#", ",", " ", "horisontal", ",", " ", "index"}], 
+                  "]"}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "possiblesList", "]"}], "==", "0"}], 
+               ",", "0", ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"getRecurse", "[", 
+                  RowBox[{"horisontal", ",", " ", 
+                   RowBox[{"Append", "[", 
+                    RowBox[{"vertical", ",", " ", "#"}], "]"}], ",", " ", 
+                   "list"}], "]"}], "&"}], "/@", "possiblesList"}]}], 
+              "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", ")"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"(", "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{"Filling", " ", "horisontal"}], "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"index", " ", "=", " ", 
+              RowBox[{
+               RowBox[{"Length", "[", "horisontal", "]"}], "+", "1"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"possiblesList", " ", "=", " ", 
+              RowBox[{"Select", "[", 
+               RowBox[{"list", ",", " ", 
+                RowBox[{
+                 RowBox[{"complyQ", "[", 
+                  RowBox[{"#", ",", " ", "vertical", ",", " ", "index"}], 
+                  "]"}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "possiblesList", "]"}], "==", "0"}], 
+               ",", "0", ",", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"getRecurse", "[", 
+                  RowBox[{
+                   RowBox[{"Append", "[", 
+                    RowBox[{"horisontal", ",", " ", "#"}], "]"}], ",", " ", 
+                   "vertical", ",", " ", "list"}], "]"}], "&"}], "/@", 
+                "possiblesList"}]}], "\[IndentingNewLine]", "]"}]}], 
+            "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", "]"}]}], 
+        "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "This", " ", "is", " ", "function", " ", "to", " ", "find", " ", "magic",
+       " ", "squares"}], ";", " ", 
+     RowBox[{
+     "it", " ", "takes", " ", "dictionary", " ", "as", " ", "input"}]}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getMagic", "[", "x_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "magic", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"magic", " ", "=", 
+         RowBox[{"Parallelize", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"getRecurse", "[", 
+             RowBox[{
+              RowBox[{"{", "#", "}"}], ",", " ", 
+              RowBox[{"{", "}"}], ",", " ", "x"}], "]"}], "&"}], "/@", 
+           RowBox[{"x", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"Ceiling", "[", 
+               RowBox[{"2", "*", 
+                RowBox[{
+                 RowBox[{"Length", "[", "x", "]"}], "/", "3"}]}], "]"}], ";;", 
+              RowBox[{"-", "1"}]}], "]"}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"magic", " ", "=", " ", 
+         RowBox[{"Select", "[", 
+          RowBox[{"magic", ",", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"(", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{"#", ",", " ", "0", ",", " ", "Infinity"}], "]"}], 
+              ")"}]}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"magic", " ", "=", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{"magic", ",", " ", "_Integer"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"magic", " ", "=", " ", 
+         RowBox[{"Union", "[", "magic", "]"}]}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{"Select", "[", 
+      RowBox[{
+       RowBox[{"WordList", "[", 
+        RowBox[{"\"\<KnownWords\>\"", ",", " ", 
+         RowBox[{"Language", "\[Rule]", "\"\<English\>\""}]}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"StringLength", "[", "#", "]"}], "==", "5"}], ")"}], 
+        "&"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"ToLowerCase", "[", "#", "]"}], ")"}], "&"}], "/@", 
+      "array"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"array", " ", "=", " ", 
+     RowBox[{"DeleteDuplicates", "[", "array", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"getMagic", "[", "array", "]"}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGCQAGIQvVS4+zKH6FtHrb0zH4DoS9/mF3ABacE7UkUgetqO
++HIQbXLzYi2YzvZqAdEhmac7QPT6rYl9ILp1l/MsEG24OX4eiN6ScmsJiFaY
+IbEGRO+RK9wOoleVOe4G0efUAvaA+S3rD4HoL8uPXQTR6fkt10F0xhGjhyC6
+iaPhFYg+o//uHYgOu63wGUSvOe8Epif7cv4H0TP6ecE0z/+vrNxA+kjfTzAt
+9FCQB0Rrd3qIgugt539sB9GfV6gfANGvznocA9GxgueOg+iQqY9Pg2j+u61n
+QLTbrTxxHiDNvHmCDIhelNT98R/I/OdrvoBoyTUV/0B0jQk/y38g/eOyCzeI
+fnghHUyzJD8UBdEC/a8lQfSGVZ4KIPpa/nQwDQCR2a++
+  "],
+ CellLabel->"In[7]:=",ExpressionUUID->"559ce53f-2a91-4765-ad1d-225748e6dea7"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.90384666925231*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"397d8ffb-d05a-49e4-be70-1e6f13e7a022"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{0.75, Automatic}, {Automatic, 0.75}},
+FrontEndVersion->"13.2 for Mac OS X ARM (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9ad6ef11-91bf-415d-8c9b-0e61e093359c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 6234, 160, 851, "Input",ExpressionUUID->"cf0e2ab7-514b-44d8-bec5-82def660fb8b"],
+Cell[6817, 184, 361, 9, 24, "Print",ExpressionUUID->"c91c6ad9-2bc0-451f-ba5c-40c4b3e25a27"],
+Cell[7181, 195, 156, 2, 57, "Output",ExpressionUUID->"cfcd3116-cbb8-4db3-b313-7a5e3afd594b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7374, 202, 8613, 211, 1205, "Input",ExpressionUUID->"559ce53f-2a91-4765-ad1d-225748e6dea7"],
+Cell[15990, 415, 155, 2, 57, "Output",ExpressionUUID->"397d8ffb-d05a-49e4-be70-1e6f13e7a022"]
+}, Open  ]]
+}
+]
+*)
+
